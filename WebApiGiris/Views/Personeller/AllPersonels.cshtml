@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "AllPersonels";
+}
+
+<h2>AllPersonels</h2>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<input type="button" id="personelGetir" value="Personel Listele" />
+
+<div id="personeller"></div>
+
+<script>
+    $(document).ready(function () {
+        $("#personelGetir").click(function () {
+            $.getJSON('../api/personel').done(function (data) {
+                var personels = "";
+                $.each(data, function (key, personel) {
+                    personels += personel.Name + " " + personel.Surname + "<br/>";
+                });
+                $("#personeller").html(personels);
+            });
+        });
+    });
+</script>
